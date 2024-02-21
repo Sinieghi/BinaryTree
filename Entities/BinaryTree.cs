@@ -42,6 +42,26 @@ class BinaryTree<T>
             PreOrder(node.rchild);
         }
     }
+
+    public void IPreOrder(Node<int> node)
+    {
+        StackMethods st = new();
+        st.Create(20);
+        while (node != null || !st.IsEmpty())
+        {
+            if (node != null)
+            {
+                System.Console.WriteLine(node.data);
+                st.Push(node);
+                node = node.lchild;
+            }
+            else
+            {
+                node = st.Pop();
+                node = node.rchild;
+            }
+        }
+    }
     public void InOrder(Node<T> node)
     {
         if (node != null)
@@ -49,6 +69,26 @@ class BinaryTree<T>
             PreOrder(node.lchild);
             System.Console.WriteLine(node.data);
             PreOrder(node.rchild);
+        }
+    }
+
+    public void IInOrder(Node<int> node)
+    {
+        StackMethods st = new();
+        st.Create(20);
+        while (node != null || !st.IsEmpty())
+        {
+            if (node != null)
+            {
+                st.Push(node);
+                node = node.lchild;
+            }
+            else
+            {
+                node = st.Pop();
+                System.Console.WriteLine(node.data);
+                node = node.rchild;
+            }
         }
     }
     public void PostOrder(Node<T> node)

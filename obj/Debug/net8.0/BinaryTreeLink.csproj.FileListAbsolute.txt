@@ -12,3 +12,4 @@ e:\DOC\Data_structure-algorithms\code_snippet\BinaryTreeLink\obj\Debug\net8.0\re
 e:\DOC\Data_structure-algorithms\code_snippet\BinaryTreeLink\obj\Debug\net8.0\BinaryTreeLink.pdb
 e:\DOC\Data_structure-algorithms\code_snippet\BinaryTreeLink\obj\Debug\net8.0\BinaryTreeLink.genruntimeconfig.cache
 e:\DOC\Data_structure-algorithms\code_snippet\BinaryTreeLink\obj\Debug\net8.0\ref\BinaryTreeLink.dll
+e:\DOC\Data_structure-algorithms\code_snippet\BinaryTreeLink\obj\Debug\net8.0\BinaryTreeLink.sourcelink.json

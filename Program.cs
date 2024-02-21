@@ -4,6 +4,6 @@
     {
         BinaryTree<int> tree = new();
 
-        tree.InOrder(tree.Create());
+        tree.IInOrder(tree.Create());
     }
 }
