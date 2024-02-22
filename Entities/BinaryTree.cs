@@ -114,11 +114,12 @@ class BinaryTree<T>
 
     }
 
-    public void LevelOrder()
+    public void LevelOrder(Node<T> root)
     {
         Queue<T> q = new(100);
 
         q.Enqueue(root);
+        System.Console.WriteLine(root.data);
 
         while (!q.IsEmpty())
         {
@@ -136,5 +137,43 @@ class BinaryTree<T>
         }
 
     }
+
+    public int Count(Node<T> node)
+    {
+        //postOrder most of the time you use postOrder in binary tree
+        int x, y;
+        if (node != null)
+        {
+            x = Count(node.lchild);
+            y = Count(node.rchild);
+            //tis is for count nodes that have both the children, you can change to count
+            //leaf nodes with degree 1 and so on
+            //to count leaf node if (node.rchild == null && node.lchild == null)
+            //leaf nodes are nodes without lchild and rchild
+            // if (node.rchild != null || node.lchild != null) count 1 or 2 deg, deg(1) and deg(2)
+            //this condition is for count node with deg(1)
+            //if((node.rchild != null && node.lchild == null) || (node.rchild == null || node.lchild != null))
+            if (node.rchild != null && node.lchild != null)
+                return x + y + 1;
+            else return x + y;
+        }
+        return 0;
+    }
+
+    public int CountChallenge(Node<T> node)
+    {
+        //this count height
+        int x, y;
+        if (node != null)
+        {
+            x = CountChallenge(node.lchild);
+            y = CountChallenge(node.rchild);
+            if (x > y)
+                return x + 1;
+            else return y + 1;
+        }
+        return 0;
+    }
+
 
 }

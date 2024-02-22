@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BinaryTreeLink")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+39771b281fee84d9d4a55b680545c5d66573b8c8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+301e929baedcff05d4a4780e8ce78f6abdf7998c")]
 [assembly: System.Reflection.AssemblyProductAttribute("BinaryTreeLink")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BinaryTreeLink")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
