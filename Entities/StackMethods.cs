@@ -51,6 +51,7 @@ class StackMethods
 
     public bool IsEmpty()
     {
+        if (stack == null) return true;
         if (stack.Top == -1)
             return true;
         return false;
@@ -62,7 +63,6 @@ class StackMethods
 
     public Node<int> StackTop()
     {
-        int x;
         if (!IsEmpty()) return stack.S[stack.Top];
         return null;
     }

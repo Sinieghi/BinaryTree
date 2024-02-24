@@ -1,6 +1,6 @@
 class BinaryTree<T>
 {
-    public Node<T>? root = null;
+    public Node<int>? root = null;
 
     public Node<int> Create()
     {
@@ -175,5 +175,130 @@ class BinaryTree<T>
         return 0;
     }
 
+    public Node<int> Search(Node<int> root, int key)
+    {
+        //depends on height of tree O(logn)
+        while (root != null)
+        {
+            if (key == root.data)
+            {
+                return root;
+            }
+            else if (key < root.data) root = root.lchild;
+            else root = root.rchild;
+        }
+        return null;
+    }
 
+    public void Insert(Node<int> root, int key)
+    {
+        //O(logn)
+        Node<int> n = null, p;
+        while (root != null)
+        {
+            n = root;
+            if (key == root.data) return;
+            else if (key < root.data) root = root.lchild;
+            else root = root.rchild;
+        }
+        p = new() { data = key };
+        if (p.data < n.data) n.lchild = p;
+        else n.rchild = p;
+    }
+    public Node<int> RInsert(Node<int> root, int key)
+    {
+        //O(logn)
+        Node<int> n = null;
+        if (root == null)
+        {
+            n = new() { data = key, lchild = null, rchild = null };
+            return n;
+        }
+        if (key < root.data) root.lchild = RInsert(root.lchild, key);
+        else if (key > root.data) root.rchild = RInsert(root.rchild, key);
+        else return null;
+        return root;
+    }
+    //delete is a bit tricker, you have to replace deleted node with a predecessor or successor.
+    public Node<int> Delete(Node<int> r, int key)
+    {
+        Node<int> q;
+        if (r == null) return null;
+
+        if (r.lchild == null && r.rchild == null)
+        {
+            if (r == root) { root = null; }
+            r = null;
+            return null;
+        }
+
+        if (key < r.data)
+            r.lchild = Delete(r.lchild, key);
+        else if (key > r.data)
+            r.rchild = Delete(r.rchild, key);
+        else
+        {
+            if (Height(r.lchild) > Height(r.rchild))
+            {
+                q = InPre(r.lchild);
+                r.data = q.data;
+                r.lchild = Delete(r.lchild, q.data);
+            }
+            else
+            {
+                q = InSucc(r.rchild);
+                r.data = q.data;
+                r.rchild = Delete(r.rchild, q.data);
+            }
+        }
+        return r;
+    }
+
+    public Node<int> InPre(Node<int> node)
+    {
+        while (node != null && node.rchild != null)
+            node = node.rchild;
+
+        return node;
+    }
+    public Node<int> InSucc(Node<int> node)
+    {
+        while (node != null && node.rchild != null)
+            node = node.rchild;
+
+        return node;
+    }
+
+    public void CreatePre(int[] pre, int n)
+    {
+        Node<int> t;
+        int i = 0;
+        root = new() { data = pre[i++] };
+        StackMethods stk = new();
+        root.lchild = root.rchild = null;
+        Node<int> p = root;
+        while (i < n)
+        {
+            if (pre[i] < p.data)
+            {
+                t = new() { data = pre[i++], lchild = null, rchild = null };
+                p.lchild = t;
+                stk.Push(t);
+                p = t;
+            }
+            else
+            {
+                if (pre[i] > p.data && pre[i] < (stk.IsEmpty() ? int.MaxValue : stk.StackTop().data))
+                {
+                    t = new() { data = pre[i++], lchild = null, rchild = null };
+                    p.rchild = t; p = t;
+                }
+                else
+                {
+                    p = stk.StackTop();
+                    stk.Pop();
+                }
+            }
+        }
+    }
 }
